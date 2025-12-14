@@ -1,14 +1,21 @@
-
 <div id="register">
-    <h1>Register</h1>
-    <form >
-        <input type="text" placeholder="UserName"  name="username" required>
-        <input type="password" placeholder="Password" name="password" required>
-        <div>
-            <label>Role:</label>
-            <label><input type="radio" name="role" value="USER" />User</label>
-            <label><input type="radio" name="role" value="ADMIN" />Admin</label>
-        </div>
-        <button type="submit">Register</button>
-    </form>
+  <h1>Register</h1>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <input type="text" placeholder="UserName" formControlName="username" />
+
+    <input type="password" placeholder="Password" formControlName="password" />
+
+    <div>
+      <label>Role:</label>
+      <label>
+        <input type="radio" value="USER" formControlName="role" /> User
+      </label>
+      <label>
+        <input type="radio" value="ADMIN" formControlName="role" /> Admin
+      </label>
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
 </div>
