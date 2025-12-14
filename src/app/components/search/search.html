@@ -1,9 +1,19 @@
 <div id="search">
     <h1>Search Flights</h1>
-    <form>
-        <input type="text" id="from" name="from" placeholder="From">
-        <input type="text" id="to" name="to" placeholder="To">
-        <input type="date" id="date" name="date" placeholder="Date">
+    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+        <input type="text" id="from" name="from" formControlName="from" placeholder="From">
+        <input type="text" id="to" name="to" formControlName="to" placeholder="To">
+        <input type="date" id="date" name="date" formControlName="journeyDate" placeholder="Date">
+        <div>
+            <label>Trip:</label>
+            <label>
+                <input type="radio" value="one_way" formControlName="tripType" /> One Way
+            </label>
+            <label>
+                <input type="radio" value="round_trip" formControlName="tripType" /> Round Trip
+            </label>
+        </div>
+        <input *ngIf="searchForm.value.tripType === 'round_trip'" type="date" formControlName="returnDate" placeholder="Return Date">
         <button type="submit">Search</button>
     </form>
 </div>

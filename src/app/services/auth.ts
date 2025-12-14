@@ -16,6 +16,6 @@ export class Auth{
   }
 
   login(payload:{username: string,password: string}): Observable<any>{
-    return this.http.post(`${this.URL}/login`, payload);
+    return this.http.post(`${this.URL}/login`, payload, { responseType: 'text' } );
   }
 }

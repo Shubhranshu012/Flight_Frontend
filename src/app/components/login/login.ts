@@ -12,11 +12,11 @@ import { Router } from '@angular/router';
 export class Login {
   loginForm: FormGroup;
   constructor(
-    private fb: FormBuilder,
+    private form: FormBuilder,
     private authService: Auth,
     private router: Router
   ) {
-    this.loginForm = this.fb.group({
+    this.loginForm = this.form.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     });
@@ -27,7 +27,10 @@ export class Login {
 
     this.authService.login(this.loginForm.value)
       .subscribe({
-        next: (responce) => {console.log(responce)},
+        next: (responce) => {
+          localStorage.setItem('token', responce);
+          this.router.navigate(['/']);
+        },
         error: err => console.error(err)
       });
   }
