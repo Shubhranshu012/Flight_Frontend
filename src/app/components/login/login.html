@@ -1,9 +1,9 @@
 
 <div id="login">
     <h1>Login</h1>
-    <form >
-        <input type="text" placeholder="UserName"  name="username" required>
-        <input type="password" placeholder="Password" name="password" required>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <input type="text" placeholder="UserName"  name="username" formControlName="username" required>
+        <input type="password" placeholder="Password" name="password" formControlName="password" required>
         <button type="submit">Login</button>
     </form>
 </div>
