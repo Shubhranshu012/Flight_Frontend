@@ -1,7 +1,7 @@
 #search{
     width: 300px;
     margin: auto;
-    height: 50vh;
+    height: 65vh;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
@@ -14,11 +14,37 @@
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
+    position: relative;
+}
+.search{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background: #1976d2;
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
 }
 form{
+  margin-top: 5vh;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
+    width: 80%;
+}
+.input{
+    width: 100%;
+    height: 5vh;
 }
 input.ng-invalid.ng-touched {
   border: 2px solid red;
@@ -37,8 +63,14 @@ div{
     justify-content: space-between;
     row-gap: 10px;
 }
-.right{
-  align-items:right;
+.button{
+    background-color: #1976d2;
+    color: white;
+    height: 5vh;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-top: 5px;
 }
 .results {
   width: 90vw;
@@ -132,4 +164,14 @@ div{
 
 .price button:hover {
   background: #125ea8;
+}
+.error-message{
+    position: absolute;
+    bottom:1vh;
+    width: 100%;
+    left: 0;
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

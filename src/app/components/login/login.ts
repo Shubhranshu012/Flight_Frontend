@@ -1,21 +1,19 @@
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../services/auth';
 import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,RouterModule],
+  imports: [ReactiveFormsModule,RouterModule,CommonModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
   loginForm: FormGroup;
-  constructor(
-    private form: FormBuilder,
-    private authService: Auth,
-    private router: Router
-  ) {
+  errorMessage: string="";
+  constructor(private form: FormBuilder,private authService: Auth,private router: Router,private cdr: ChangeDetectorRef) {
     this.loginForm = this.form.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -23,15 +21,28 @@ export class Login {
   }
 
   onSubmit() {
-    if (this.loginForm.invalid) return;
+  if (this.loginForm.invalid) {
+    this.loginForm.markAllAsTouched();
+    return;
+  }
 
-    this.authService.login(this.loginForm.value)
-      .subscribe({
-        next: (responce) => {
-          localStorage.setItem('token', responce);
-          this.router.navigate(['/']);
-        },
-        error: err => console.error(err)
-      });
+  this.errorMessage = '';
+
+  this.authService.login(this.loginForm.value)
+    .subscribe({
+      next: (response) => {
+        localStorage.setItem('token', response);
+        this.router.navigate(['/']);
+      },
+      error: err => {
+        console.log(err);
+        if (err.status === 403) {
+          this.errorMessage = 'Wrong UserName or Password';
+        } else {
+          this.errorMessage = 'Login failed. Please try again.';
+        }
+        this.cdr.detectChanges();
+      }
+    });
   }
 }

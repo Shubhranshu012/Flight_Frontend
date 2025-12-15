@@ -1,19 +1,21 @@
 <div id="search">
-  <h1>Search Flights</h1>
-
+  <div class="search">
+    <h1>Search Flights</h1>
+  </div>
+  
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-    <div class="date">
+    <div class="col">
         <label for="fromPlace">From:</label>
-        <input type="text" formControlName="fromPlace" placeholder="From" class="right">
+        <input type="text" class="input" formControlName="fromPlace" placeholder="From">
     </div>
 
-    <div class="date">
+    <div class="col">
         <label for="toPlace">To:  </label>
-        <input type="text" formControlName="toPlace" placeholder="To">
+        <input type="text" class="input" formControlName="toPlace" placeholder="To">
     </div>
 
 
-    <div class="date">
+    <div class="col">
         <label for="journeyDate">Journey Date:</label>
         <input type="date" formControlName="journeyDate">
     </div>
@@ -29,15 +31,14 @@
       </label>
     </div>
 
-    <div *ngIf="searchForm.value.tripType === 'round_trip'" class="date">
+    <div *ngIf="searchForm.value.tripType === 'round_trip'" class="col">
       <label for="returnDate">Return Date:</label>
       <input  type="date" formControlName="returnDate" placeholder="Return Date">
     </div>
 
-    <button type="submit">Search</button>
+    <button type="submit" class="button">Search</button>
 
-    <div *ngIf="message" class="message">{{ message }}</div>
-
+    <div *ngIf="message" class="error-message">{{ message }}</div>
   </form>
 </div>
 <div *ngIf="flights.length > 0" class="results">

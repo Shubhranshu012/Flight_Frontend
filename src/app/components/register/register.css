@@ -1,8 +1,8 @@
 #register{
-    position: relative;
     width: 300px;
     margin: auto;
     height: 60vh;
+    padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -14,6 +14,7 @@
     flex-direction: column;
     align-items: center;
     row-gap: 10px;
+    position: relative;
 }
 .col{
     display: flex;
@@ -32,12 +33,12 @@
     color: white;
     background: #1976d2;
     width: 100%;
+    border-radius: 5px 5px 0 0;
 }
 form{
     display: flex;
     flex-direction: column;
     row-gap: 10px;
-    padding-top:5vh ;
     width: 80%;
 }
 .link{
