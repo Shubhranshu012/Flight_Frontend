@@ -1,19 +1,65 @@
 <div id="search">
-    <h1>Search Flights</h1>
-    <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-        <input type="text" id="from" name="from" formControlName="from" placeholder="From">
-        <input type="text" id="to" name="to" formControlName="to" placeholder="To">
-        <input type="date" id="date" name="date" formControlName="journeyDate" placeholder="Date">
-        <div>
-            <label>Trip:</label>
-            <label>
-                <input type="radio" value="one_way" formControlName="tripType" /> One Way
-            </label>
-            <label>
-                <input type="radio" value="round_trip" formControlName="tripType" /> Round Trip
-            </label>
-        </div>
-        <input *ngIf="searchForm.value.tripType === 'round_trip'" type="date" formControlName="returnDate" placeholder="Return Date">
-        <button type="submit">Search</button>
-    </form>
+  <h1>Search Flights</h1>
+
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div class="date">
+        <label for="fromPlace">From:</label>
+        <input type="text" formControlName="fromPlace" placeholder="From" class="right">
+    </div>
+
+    <div class="date">
+        <label for="toPlace">To:  </label>
+        <input type="text" formControlName="toPlace" placeholder="To">
+    </div>
+
+
+    <div class="date">
+        <label for="journeyDate">Journey Date:</label>
+        <input type="date" formControlName="journeyDate">
+    </div>
+
+
+    <div class="date">
+      <label>Trip Type:</label>
+      <label>
+        <input type="radio" value="one_way" formControlName="tripType"> One Way
+      </label>
+      <label>
+        <input type="radio" value="round_trip" formControlName="tripType"> Round Trip
+      </label>
+    </div>
+
+    <div *ngIf="searchForm.value.tripType === 'round_trip'" class="date">
+      <label for="returnDate">Return Date:</label>
+      <input  type="date" formControlName="returnDate" placeholder="Return Date">
+    </div>
+
+    <button type="submit">Search</button>
+
+    <div *ngIf="message" class="message">{{ message }}</div>
+
+  </form>
+</div>
+<div *ngIf="flights.length > 0" class="results">
+  <h2>Available Flights</h2>
+
+  <div *ngFor="let flight of flights" class="flight-card">
+    <h3>{{ flight.airline }} ({{ flight.flightId }})</h3>
+
+    <p>
+      <strong>{{ flight.source }}</strong>
+      →
+      <strong>{{ flight.destination }}</strong>
+    </p>
+
+    <p>
+      Departure: {{ flight.departureTime | date:'short' }} <br>
+      Arrival: {{ flight.arrivalTime | date:'short' }}
+    </p>
+
+    <p>💺 Seats Available: {{ flight.availableSeats }}</p>
+    <p>💰 Price: ₹{{ flight.price }}</p>
+
+    <button>Book</button>
+  </div>
 </div>

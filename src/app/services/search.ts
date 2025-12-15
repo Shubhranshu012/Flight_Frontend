@@ -10,6 +10,6 @@ export class searchService {
   constructor(private http: HttpClient) {}
 
   searchFlights(payload: any): Observable<any> {
-  return this.http.post(this.URL, payload); 
-}
+    return this.http.post(this.URL, payload); 
+  }
 }

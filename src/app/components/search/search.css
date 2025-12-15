@@ -20,3 +20,50 @@ form{
     flex-direction: column;
     row-gap: 10px;
 }
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+
+div{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    row-gap: 10px;
+}
+.date{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    row-gap: 10px;
+}
+.right{
+  align-items:right;
+}
+
+
+
+.results {
+  margin-top: 20px;
+}
+
+.flight-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: #f9f9f9;
+}
+
+.flight-card h3 {
+  margin: 0 0 5px 0;
+}
+
+.flight-card button {
+  background: #1976d2;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
