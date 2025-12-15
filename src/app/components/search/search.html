@@ -44,18 +44,31 @@
   <h2>Available Flights</h2>
 
   <div *ngFor="let flight of flights" class="flight-card">
-    <h3>{{ flight.airline }} ({{ flight.flightId }})</h3>
 
-    <p>
-      <strong>{{ flight.source }}</strong>→<strong>{{ flight.destination }}</strong>
-    </p>
+    <div class="airline">
+      <h3>{{ flight.airline }}</h3>
+      <span>{{ flight.flightId }}</span>
+    </div>
+    <div class="time">
+        <strong>{{ flight.departureTime | date:'shortTime' }}</strong>
+        <span class="city">{{ flight.source }}</span>
+      </div>
+    <div class="duration">
+        <span class="line"></span>
+        <span class="duration-text">
+          {{ flight.departureTime | date:'HH:mm' }} →
+          {{ flight.arrivalTime | date:'HH:mm' }}
+        </span>
+        <span class="line"></span>
+      </div>
+    <div class="time">
+        <strong>{{ flight.arrivalTime | date:'shortTime' }}</strong>
+        <span class="city">{{ flight.destination }}</span>
+      </div>
+    <div class="price">
+      <p>₹{{ flight.price }}</p>
+      <button>Book</button>
+    </div>
 
-    <p>
-      Departure: {{ flight.departureTime | date:'short' }} <br>
-      Arrival: {{ flight.arrivalTime | date:'short' }}
-    </p>
-    <p>💰 Price: ₹{{ flight.price }}</p>
-
-    <button>Book</button>
   </div>
 </div>
