@@ -47,17 +47,13 @@
     <h3>{{ flight.airline }} ({{ flight.flightId }})</h3>
 
     <p>
-      <strong>{{ flight.source }}</strong>
-      →
-      <strong>{{ flight.destination }}</strong>
+      <strong>{{ flight.source }}</strong>→<strong>{{ flight.destination }}</strong>
     </p>
 
     <p>
       Departure: {{ flight.departureTime | date:'short' }} <br>
       Arrival: {{ flight.arrivalTime | date:'short' }}
     </p>
-
-    <p>💺 Seats Available: {{ flight.availableSeats }}</p>
     <p>💰 Price: ₹{{ flight.price }}</p>
 
     <button>Book</button>
