@@ -25,7 +25,10 @@ export class Register {
   }
 
   onSubmit() {
-    if (this.registerForm.invalid) return;
+    if (this.registerForm.invalid) {
+      this.registerForm.markAllAsTouched();
+      return;
+    }
 
     this.authService.register(this.registerForm.value)
       .subscribe({

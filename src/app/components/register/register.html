@@ -1,12 +1,21 @@
 <div id="register">
-  <h1>Register</h1>
+  <div class="register">
+    <h1>Register</h1>
+  </div>
+  
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <input type="text" placeholder="UserName" formControlName="username" />
+    <div class="col">
+      <label for="username">Username:</label>
+      <input type="text" placeholder="UserName" formControlName="username" class="input"/> 
+    </div>
 
-    <input type="password" placeholder="Password" formControlName="password" />
+    <div class="col">
+      <label for="password">Password:</label>
+      <input type="password" placeholder="Password" formControlName="password" class="input" />
+    </div>
 
-    <div>
+    <div class="role">
       <label>Role:</label>
       <label>
         <input type="radio" value="USER" formControlName="role" /> User
@@ -16,7 +25,11 @@
       </label>
     </div>
 
-    <button type="submit">Register</button>
-    <a routerLink="/login">Already have an account? Login</a>
+    <button type="submit" class="button">Register</button>
+    
   </form>
+  <div class="link">
+    <p>Already have an account?</p>
+    <a routerLink="/login"> Login</a>
+  </div>
 </div>
