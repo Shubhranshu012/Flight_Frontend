@@ -1,4 +1,4 @@
-# ✈️ Flight Booking Application
+#  Flight Booking Application
 
 A full-stack Flight Booking web application built using **Angular** (Frontend) and **Spring Boot Microservices** (Backend).  
 Users can search flights, view availability, and securely log in to book flights.
@@ -7,15 +7,15 @@ Users can search flights, view availability, and securely log in to book flights
 # Overall Flow
 ![Architecture Diagram](./Output/Architecture.png)
 
-## 📌 Features
+##  Features
 
-### 🔐 Authentication
+###  Authentication
 - User Login & Registration
 - JWT-based authentication
 - Role-based access (User/Admin)
 - Secure token storage
 
-### 🔍 Flight Search
+###  Flight Search
 - Search flights by:
   - From & To location
   - Journey date
@@ -23,13 +23,13 @@ Users can search flights, view availability, and securely log in to book flights
 - Real-time flight availability
 - Clean airline-style UI for results
 
-### 🎫 Flight Results
+###  Flight Results
 - Airline name & flight number
 - Departure & arrival time
 - Price display
 - Book button for next flow
 
-### 🧭 UI/UX
+###  UI/UX
 - Reusable Navbar across all pages
 - Form validation with red highlights
 - Error & success messages
@@ -37,7 +37,7 @@ Users can search flights, view availability, and securely log in to book flights
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 
 ### Frontend
 - Angular (Standalone Components)
@@ -55,7 +55,7 @@ Users can search flights, view availability, and securely log in to book flights
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 ```
 flight-frontend/
 ├── src/
@@ -84,28 +84,42 @@ flight-frontend/
 ```
 
 
-
 ## Prerequisites
 - Node.js (v18+)
 - npm (v9+)
 - Angular CLI (v21+)
 - Backend API running on http://localhost:8088
 
+# Home Page
+![Home Page](./Output/Home.png)
 
-## ✅ Frontend Validation Rules
+# Search Flights
+![Search Flights](./Output/Search%20Flight.png)
+
+# Flight Results
+![Flight Results](./Output/Search%20Output.png)
+
+# Login Page
+![Login Page](./Output/Login.png)
+
+# Registration Page
+![Registration Page](./Output/Register.png)
+
+
+##  Frontend Validation Rules
 
 All essential validations are implemented at the frontend level to ensure data integrity, prevent invalid submissions, and provide immediate user feedback.
 
-### 🔍 Search Form Validations
+###  Search Form Validations
 - Source (From) field is mandatory
 - Destination (To) field is mandatory
 - Travel (Journey) date is required
 
-### 🔐 Login Form Validations
+###  Login Form Validations
 - UserName field is mandatory
 - Password field is mandatory
 
-### 📝 Registration Form Validations
+###  Registration Form Validations
 - UserName field is mandatory
 - Password field is mandatory
 - Submit button remains disabled until the form is valid
