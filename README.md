@@ -1,59 +1,111 @@
-# FlightFrontend
+# ✈️ Flight Booking Application
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+A full-stack Flight Booking web application built using **Angular** (Frontend) and **Spring Boot Microservices** (Backend).  
+Users can search flights, view availability, and securely log in to book flights.
 
-## Development server
+---
+# Overall Flow
+![Architecture Diagram](./Output/Architecture.png)
 
-To start a local development server, run:
+## 📌 Features
 
-```bash
-ng serve
+### 🔐 Authentication
+- User Login & Registration
+- JWT-based authentication
+- Role-based access (User/Admin)
+- Secure token storage
+
+### 🔍 Flight Search
+- Search flights by:
+  - From & To location
+  - Journey date
+  - One-way / Round-trip
+- Real-time flight availability
+- Clean airline-style UI for results
+
+### 🎫 Flight Results
+- Airline name & flight number
+- Departure & arrival time
+- Price display
+- Book button for next flow
+
+### 🧭 UI/UX
+- Reusable Navbar across all pages
+- Form validation with red highlights
+- Error & success messages
+- Responsive layout
+
+---
+
+## 🛠 Tech Stack
+
+### Frontend
+- Angular (Standalone Components)
+- Reactive Forms
+- Angular Router
+- RxJS
+- CSS (Flexbox-based UI)
+
+### Backend
+- Spring Boot
+- Spring Cloud (Gateway, Eureka)
+- Spring Security (JWT)
+- MongoDB
+- REST APIs
+
+---
+
+## 📂 Project Structure
+```
+flight-frontend/
+├── src/
+│   ├── app/
+│   │   ├── components/
+│   │   │   ├── home/
+│   │   │   ├── login/
+│   │   │   ├── register/
+│   │   │   ├── search/
+│   │   │   └── navbar/
+│   │   ├── services/
+│   │   │   ├── auth.ts
+│   │   │   └── service.ts
+│   │   ├── app.config.ts
+│   │   ├── app.html
+│   │   ├── app.css
+│   │   ├── app.ts
+│   │   └── app.route.ts
+│   ├── index.html
+│   ├── main.ts
+│   └── styles.scss
+├── angular.json
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## Prerequisites
+- Node.js (v18+)
+- npm (v9+)
+- Angular CLI (v21+)
+- Backend API running on http://localhost:8088
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## ✅ Frontend Validation Rules
 
-```bash
-ng generate --help
-```
+All essential validations are implemented at the frontend level to ensure data integrity, prevent invalid submissions, and provide immediate user feedback.
 
-## Building
+### 🔍 Search Form Validations
+- Source (From) field is mandatory
+- Destination (To) field is mandatory
+- Travel (Journey) date is required
 
-To build the project run:
+### 🔐 Login Form Validations
+- UserName field is mandatory
+- Password field is mandatory
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### 📝 Registration Form Validations
+- UserName field is mandatory
+- Password field is mandatory
+- Submit button remains disabled until the form is valid
