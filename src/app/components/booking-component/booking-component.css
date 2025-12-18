@@ -1,0 +1,6 @@
+.passengers{
+    display: flex;
+    flex-direction: row;
+    width: 80vw;
+    flex-wrap: wrap;
+}
