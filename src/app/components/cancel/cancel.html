@@ -1,0 +1,14 @@
+<form>
+    <h3>Cancle Booking</h3>
+    <div class="top">
+        <div>
+            <label >Pnr:</label>
+            <input [(ngModel)]="pnr" name="pnr">
+        </div>
+        <div>
+            <label >Email:</label>
+            <input [(ngModel)]="email" name="email">
+        </div>
+    </div>
+    <button (click)="submit()">Submit</button>
+</form>    

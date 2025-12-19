@@ -1,6 +1,59 @@
 .passengers{
     display: flex;
     flex-direction: row;
-    width: 80vw;
+    width: 90;
     flex-wrap: wrap;
+    background-color: cornflowerblue;
+    padding:5px;
+    margin: auto;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    justify-content: left;
+}
+.col{
+    display: flex;
+    justify-content: left;
+    align-items: left;
+    flex-direction: column;
+}
+.row{
+    display: flex;
+    flex-direction: row;
+    column-gap: 20px;
+}
+.input{
+    height: 30px;
+    border: none;
+    width: 200px;
+    border-radius: 5px;
+}
+form{
+    width: 90vw;
+    height: auto;
+    margin: auto;
+    margin-top: 5vh;
+    border-radius: 5px;
+    background-color: antiquewhite;
+    padding: 5px;
+}
+h3{
+    padding-top:10px ;
+    padding-bottom: 10px;
+}
+.top input{
+    height: 25px;
+    border: none;
+    width: 200px;
+    border-radius: 5px;
+}
+.top div{
+    padding: 2px;
+}
+button{
+    height: 30px;
+    width:70px;
+    border-radius: 5px;
+    margin-left: calc(50% - 35px);
+    justify-content: center;
 }

@@ -1,38 +1,56 @@
-<form (ngSubmit)="bookingButton()">
-    <div>
-        <label>Email:</label>
-        <input [(ngModel)]="booking.email" name="email">
+<form (ngSubmit)="bookingButton()" >
+    <h3>Complete your booking</h3>
+    <div class="top">
+        <div>
+            <label>Email:</label>
+            <input [(ngModel)]="booking.email" name="email">
+        </div>
+        <div>
+            <label>Number of Passengers:</label>
+            <input type="number" [(ngModel)]="passengersCount" (ngModelChange)="updatePassenger($event)" [min]=0 name="passengersCount">
+        </div>
     </div>
 
-    <div>
-        <label>Number of Passengers:</label>
-        <input type="number" [(ngModel)]="passengersCount" (ngModelChange)="updatePassenger($event)"
-            name="passengersCount">
-    </div>
 
     <div *ngFor="let _ of passengersArray; let i = index" class="passengers">
         <p>Passenger {{i+1}}</p>
-        <div class="passengers">
-            <div>
-                <label>Name:</label>
-                <input [(ngModel)]="passengers[i].name" name="name{{i}}">
-            </div>
-            <input [(ngModel)]="passengers[i].age" name="age{{i}}">
-            <div>
-                <label>Gender:</label>
-                <input type="radio" [(ngModel)]="passengers[i].gender" name="gender{{i}}" value="MALE">Male
-                <input type="radio" [(ngModel)]="passengers[i].gender" name="gender{{i}}" value="FEMALE">Female
-            </div>  
-            <div>
-                <label>SeatNumber:</label>
-                <input [(ngModel)]="passengers[i].seatNumber" name="seat{{i}}">
-            </div>
-            <div>
-                <input [(ngModel)]="passengers[i].mealOption" name="meal{{i}}">
-
+        <div class="passengers col">
+            <div class="row">
+                <div class="col">
+                    <label>Name:</label>
+                    <input [(ngModel)]="passengers[i].name" name="name{{i}}" class="input">
+                </div>
+                <div class="col">
+                    <label >Age:</label>
+                    <input [(ngModel)]="passengers[i].age" name="age{{i}}" class="input">
+                </div>
+                
+                <div class="col">
+                    <label>SeatNumber:</label>
+                    <input [(ngModel)]="passengers[i].seatNumber" name="seat{{i}}" class="input">
+                </div>
+                <div class="col">
+                    <label>Gender:</label>
+                    <select [(ngModel)]="passengers[i].gender" name="gender{{i}}">
+                        <option value="" disabled>Select Gender</option>
+                        <option value="MALE">Male</option>
+                        <option value="FEMALE">Female</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <label>Meal Option:</label>
+                    <select [(ngModel)]="passengers[i].mealOption" name="meal{{i}}">
+                        <option value="" disabled>Select Meal</option>
+                        <option value="VEG">Veg</option>
+                        <option value="NON_VEG">Non-Veg</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
 
     <button type="submit">Submit</button>
 </form>
+<div>
+    <p>{{message}}</p>
+</div>

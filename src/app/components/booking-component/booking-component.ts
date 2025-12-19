@@ -21,9 +21,10 @@ interface Passenger {
 })
 
 export class BookingComponent {
-  passengersCount:number=0;
+  passengersCount:number=1;
   passengers: Passenger[] = [];
   flightId:string="";
+  message:string="Hello";
   booking: { email: string; passengers: Passenger[] } = {
     email: "",
     passengers: []
@@ -42,6 +43,9 @@ export class BookingComponent {
     console.log(this.flightId);
   }
   updatePassenger(event:any){
+    if(this.passengersCount==0){
+      this.message="Minimum 1 passenger";
+    }
     console.log(event);
     if(event!=null){
       this.passengersCount=event;
