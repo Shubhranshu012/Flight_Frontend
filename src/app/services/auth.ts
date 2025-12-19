@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 export class Auth{
 
   private URL = 'http://localhost:8088/AUTHSERVICE/auth';
+  private URL2 = 'http://localhost:8088/BOOKINGSERVICE/api/flight/booking';
 
   constructor(private http: HttpClient) {}
 
@@ -16,6 +17,12 @@ export class Auth{
   }
 
   login(payload:{username: string,password: string}): Observable<any>{
-    return this.http.post(`${this.URL}/login`, payload, { responseType: 'text' } );
+    return this.http.post(`${this.URL}/login`, payload);
+  }
+  booking(payload:any,flightId:string): Observable<any>{
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({Authorization: `Bearer ${token}`});
+    console.log("Here");
+    return this.http.post(`${this.URL2}/${flightId}`,payload,{headers});
   }
 }

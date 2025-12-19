@@ -1,24 +1,38 @@
-<p>booking-component works!</p>
-<div>
-    <form>
-        <div>
-            <label>Email:</label>
-            <input [(ngModel)]="booking.email" name="email">
-        </div>
+<form (ngSubmit)="bookingButton()">
+    <div>
+        <label>Email:</label>
+        <input [(ngModel)]="booking.email" name="email">
+    </div>
 
-        <div>
-            <label>Number of Passengers:</label>
-            <input type="number" [(ngModel)]="passengersCount" (ngModelChange)="updatePassenger($event)"
-                name="passengersCount">
-        </div>
+    <div>
+        <label>Number of Passengers:</label>
+        <input type="number" [(ngModel)]="passengersCount" (ngModelChange)="updatePassenger($event)"
+            name="passengersCount">
+    </div>
 
-        <div *ngFor="let _ of passengersArray; let i = index" class="passengers">
-            <p>Hello Passenger {{i+1}}</p>
-            <input [(ngModel)]="passengers[i].name" name="passengers[i].name" placeholder="">
-            <input type="number" [(ngModel)]="passengers[i].age" name="passengers[i].age" placeholder="Age">
-            <input [(ngModel)]="passengers[i].seatNumber" name="passengers[i].seatNumber" placeholder="SeatNumber">
-            <input [(ngModel)]="passengers[i].mealOption" name="passengers[i].mealOption" placeholder="Meal">
+    <div *ngFor="let _ of passengersArray; let i = index" class="passengers">
+        <p>Passenger {{i+1}}</p>
+        <div class="passengers">
+            <div>
+                <label>Name:</label>
+                <input [(ngModel)]="passengers[i].name" name="name{{i}}">
+            </div>
+            <input [(ngModel)]="passengers[i].age" name="age{{i}}">
+            <div>
+                <label>Gender:</label>
+                <input type="radio" [(ngModel)]="passengers[i].gender" name="gender{{i}}" value="MALE">Male
+                <input type="radio" [(ngModel)]="passengers[i].gender" name="gender{{i}}" value="FEMALE">Female
+            </div>  
+            <div>
+                <label>SeatNumber:</label>
+                <input [(ngModel)]="passengers[i].seatNumber" name="seat{{i}}">
+            </div>
+            <div>
+                <input [(ngModel)]="passengers[i].mealOption" name="meal{{i}}">
+
+            </div>
         </div>
-    </form>
-    <button (click)="bookingButton()">Submit</button>
-</div>
+    </div>
+
+    <button type="submit">Submit</button>
+</form>
