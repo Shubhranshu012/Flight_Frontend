@@ -3,3 +3,29 @@ form{
     height: auto;
     margin: auto;
 }
+.from-to{
+    display: flex;
+    flex-direction: row;   
+}
+.container{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    column-gap: 10px;
+}
+.bookings{
+    width: 90vw;
+    margin: auto;
+    height: 10vh;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-color: beige;
+    border-radius: 5px;
+}
+.button{
+    height: 5vh;
+    width: 10vw;
+    border: none;
+    margin-top: 3px;
+    margin-left: calc(45vw - 5vw);
+}

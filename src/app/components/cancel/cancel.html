@@ -1,14 +1,18 @@
-<form>
-    <h3>Cancle Booking</h3>
-    <div class="top">
-        <div>
-            <label >Pnr:</label>
-            <input [(ngModel)]="pnr" name="pnr">
+<div>
+    <p>All Booking</p>
+    <div *ngFor="let booking of bookings" class="bookings">
+        <div class="container">
+            <p>Pnr:{{booking.booking.pnr}}</p>
+            <div class="from-to">
+                <p>{{booking.booking.from}}</p>
+                <p>→</p>
+                <p>{{booking.booking.to}}</p>
+            </div>
+            <p>Number of passengers:{{booking.passengers.length}}</p>
+            <p>Booked On:{{booking.booking.bookingTime}}</p>
+            <p>{{booking.booking.status}}</p>
         </div>
-        <div>
-            <label >Email:</label>
-            <input [(ngModel)]="email" name="email">
-        </div>
+        
+        <button value={{booking.booking.pnr}} (click)="CancelBooking(booking.booking.pnr)" class="button">Cancel ticket</button>
     </div>
-    <button (click)="submit()">Submit</button>
-</form>    
+</div>
