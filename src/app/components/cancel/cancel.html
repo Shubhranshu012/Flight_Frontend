@@ -1,18 +1,46 @@
 <div>
-    <p>All Booking</p>
-    <div *ngFor="let booking of bookings" class="bookings">
+    <div *ngIf="showPopup==true" class="full blur">
+
+    </div>
+    <div class="message">
+        <p>{{message}}</p>
+    </div>
+    <div *ngFor="let booking of bookings" class="bookings" >
         <div class="container">
-            <p>Pnr:{{booking.booking.pnr}}</p>
-            <div class="from-to">
-                <p>{{booking.booking.from}}</p>
-                <p>→</p>
-                <p>{{booking.booking.to}}</p>
+            <div class="col">
+                <p>Pnr:</p>
+                <p>{{booking.booking.pnr}}</p>
             </div>
-            <p>Number of passengers:{{booking.passengers.length}}</p>
+            <div>
+                <div class="from-to">
+                    <p>From</p>
+                    <p>→</p>
+                    <p>To</p>
+                </div>
+                <div class="from-to">
+                    <p>{{booking.booking.from}}</p>
+                    <p>→</p>
+                    <p>{{booking.booking.to}}</p>
+                </div>
+            </div>
+            <div>
+                <p>Number of passengers:{{booking.passengers.length}}</p>
+            </div>
+
             <p>Booked On:{{booking.booking.bookingTime}}</p>
             <p>{{booking.booking.status}}</p>
         </div>
         
-        <button value={{booking.booking.pnr}} (click)="CancelBooking(booking.booking.pnr)" class="button">Cancel ticket</button>
+        <div class="confirm" *ngIf="booking.booking.showPopup">
+            <p>Do U Want To Cancel The Booking?</p>
+            <div>
+                <button [disabled]="booking.booking.status !== 'BOOKED'" (click)="CancelBooking(booking.booking.pnr)"class="button">Yes</button>
+                <button class="button" (click)="booking.booking.showPopup = false" (click)="noBlur()">No</button>
+            </div>
+        </div>
+
+        <button *ngIf="booking.booking.status == 'BOOKED'" (click)="booking.booking.showPopup = true" (click)="blur()">
+            Cancel ticket
+        </button>
     </div>
 </div>

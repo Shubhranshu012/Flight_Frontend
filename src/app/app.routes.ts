@@ -10,5 +10,5 @@ import { Cancel } from './components/cancel/cancel';
 export const routes: Routes = [{path: 'register',component: Register},
     {path: 'login',component: Login},{path:'search',component: Search},{ path: '', component: Home },
     { path: 'booking/:id', component: BookingComponent },
-    {path:'temp',component:Temp},{path:'cancel',component:Cancel}
+    {path:'temp',component:Temp},{path:'all',component:Cancel}
 ];

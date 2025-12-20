@@ -9,5 +9,13 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class Navbar {
-
-}
+  logout(){
+    localStorage.clear();
+  }
+  isLoggedIn(): boolean {
+    if(localStorage.getItem('token') != null){
+      return true;
+    }
+    return false;
+  }
+} 

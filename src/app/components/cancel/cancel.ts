@@ -22,10 +22,9 @@ interface Booking{
 })
 
 export class Cancel {
-
-  bookings:any=[];
-  constructor(private authServices:Auth,private cdr: ChangeDetectorRef){}
-  ngOnInit(){
+  message:string="";
+  showPopup:boolean=false;
+  getAllBooking():void{
     const Email=localStorage.getItem("email");
     console.log(Email);
     this.authServices.getAll(Email).subscribe({
@@ -35,24 +34,45 @@ export class Cancel {
           console.log(this.bookings[i].booking.flightInventoryId);
           this.bookings[i].booking.to="Delhi";
           this.bookings[i].booking.from="Mumbai";
+          this.bookings[i].booking.show_pop_up=false;
         }
         console.log(this.bookings);
+        this.cdr.detectChanges();
       },
       error: (responce) => {
         console.error('Error', responce);
+        this.message=responce.message;
+        this.cdr.detectChanges();
       }
     })
   }
+  bookings:any=[];
+  constructor(private authServices:Auth,private cdr: ChangeDetectorRef){}
+  ngOnInit(){
+    this.getAllBooking();
+  }
+  blur(){
+    this.showPopup=true;
+    this.cdr.detectChanges();
+  }
 
+  noBlur(){
+    this.showPopup=false;
+    this.cdr.detectChanges();
+  }
   CancelBooking(pnr:any){
     console.log(pnr);
     this.authServices.cancel(pnr).subscribe({
       next: (responce) => {
         console.log('Success', responce);
+        this.getAllBooking();
+        this.showPopup=false;
         this.cdr.detectChanges();
       },
       error: (responce) => {
         console.error('Error', responce);
+        this.message=responce.message;
+        this.cdr.detectChanges();
       }
     });
   }

@@ -16,7 +16,8 @@ form{
 .bookings{
     width: 90vw;
     margin: auto;
-    height: 10vh;
+    height: auto;
+    padding-bottom:5px ;
     margin-top: 10px;
     margin-bottom: 10px;
     background-color: beige;
@@ -27,5 +28,44 @@ form{
     width: 10vw;
     border: none;
     margin-top: 3px;
-    margin-left: calc(45vw - 5vw);
+    margin-right: 5px;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+    margin: 2px;
+}
+.confirm{
+    width:30vw;
+    height: 20vh;
+    background-color: antiquewhite;
+    border-radius: 5px;
+    position: absolute;
+    top:50%;
+    left:calc(50% - 15vw);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+.blur {
+  filter: blur(4px);
+}
+.full{
+    width: 100vw;
+    height: 100vh;
+    background-color: #ffffff9e;
+    z-index: 10;
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+.message{
+    height: 5vh;
+    width: 80vw;
+    margin: auto;
+    text-align: center;
+    color: red;
+    margin-top: 3vh;
 }

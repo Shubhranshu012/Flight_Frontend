@@ -2,8 +2,10 @@
     <h2 class="logo">Flight</h2>
     <div class="nav-buttons">
         <button routerLink="/" >Home</button>
-        <button routerLink="/login">Login</button>
-        <button routerLink="/register" >Register</button>
-        <button routerLink="/search" >search</button>
+        <button routerLink="/login" *ngIf="!isLoggedIn()">Login</button>
+        <button routerLink="/register" *ngIf="!isLoggedIn()">Register</button>
+        <button routerLink="/all">Bookings</button>
+        <button routerLink="/search">search</button>
+        <button (click)="logout()" >Logout</button>
     </div>
 </header>
