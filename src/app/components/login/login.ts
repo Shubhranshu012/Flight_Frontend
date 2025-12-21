@@ -1,38 +1,31 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../services/auth';
 import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule,RouterModule,CommonModule],
+  imports: [ReactiveFormsModule,RouterModule,CommonModule,FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
-  loginForm: FormGroup;
   errorMessage: string="";
-  constructor(private form: FormBuilder,private authService: Auth,private router: Router,private cdr: ChangeDetectorRef) {
-    this.loginForm = this.form.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+  email:string="";
+  password:string="";
+  constructor(private authService: Auth,private router: Router,private cdr: ChangeDetectorRef) {
   }
 
   onSubmit() {
-  if (this.loginForm.invalid) {
-    this.loginForm.markAllAsTouched();
-    return;
-  }
-
   this.errorMessage = '';
 
-  this.authService.login(this.loginForm.value)
+  this.authService.login({"email":this.email,"password":this.password})
     .subscribe({
       next: (response) => {
         localStorage.setItem('token', response.token);
         localStorage.setItem('role', response.role);
+        localStorage.setItem('email',this.email)
         this.router.navigate(['/']);
       },
       error: err => {

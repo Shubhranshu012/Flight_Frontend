@@ -17,7 +17,7 @@ export class Auth{
     return this.http.post(`${this.URL}/register`, payload);
   }
 
-  login(payload:{username: string,password: string}): Observable<any>{
+  login(payload:{email: string,password: string}): Observable<any>{
     return this.http.post(`${this.URL}/login`, payload);
   }
   booking(payload:any,flightId:string): Observable<any>{

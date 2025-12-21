@@ -3,9 +3,11 @@
     <div class="nav-buttons">
         <button routerLink="/" >Home</button>
         <button routerLink="/login" *ngIf="!isLoggedIn()">Login</button>
+        <button *ngIf="isAdmin()">Add Inventory</button>
         <button routerLink="/register" *ngIf="!isLoggedIn()">Register</button>
-        <button routerLink="/all">Bookings</button>
+        <button *ngIf="isUser()" routerLink="/all">Bookings</button>
         <button routerLink="/search">search</button>
-        <button (click)="logout()" >Logout</button>
+        <button (click)="logout()" *ngIf="isLoggedIn()">Logout</button>
+        <button *ngIf="isUser()" >Profile</button>
     </div>
 </header>

@@ -3,14 +3,14 @@
     <div class="login">
         <h1>Login</h1>
     </div>
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form (ngSubmit)="onSubmit()">
         <div class="col">
-            <label for="username">Username:</label>
-            <input type="text" class="input" placeholder="UserName"  name="username" formControlName="username" required>
+            <label for="username">Email:</label>
+            <input type="text" class="input" placeholder="Email"  name="email" [(ngModel)]="email" required>
         </div>
         <div class="col">
             <label for="password">Password:</label>
-            <input type="password" class="input" placeholder="Password" name="password" formControlName="password" required>
+            <input type="password" class="input" placeholder="Password" name="password" [(ngModel)]="password" required>
         </div>
         <button type="submit" class="button">Login</button>
     </form>
