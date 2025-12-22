@@ -22,7 +22,7 @@
     justify-content: center;
     align-items: center;
     width: 30vw;
-    height: 30vh;
+    height: 55vh;
     position: absolute;
     z-index: 10;
     left: 51%;
@@ -31,6 +31,7 @@
     background-color: antiquewhite;
     border-radius: 5px;
     padding: 5px;
+
     
 }
 .success{
@@ -38,4 +39,30 @@
 }
 .message{
     color: red;
+    height: 5vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+.button{
+    margin-top:3vh;
+    height: 4vh;
+    width: 7vw;
+    margin-right: 2vw;
+}
+.row{
+    display: flex;
+    flex-direction: column;
+}
+.box input{
+    width: 30vw;
+    height: 5vh;
+    border: none;
+    
+}
+.button1{
+    height: 4vh;
+    width: 20vw;
+}
+.Text{
+    margin-left: -4vw;
 }

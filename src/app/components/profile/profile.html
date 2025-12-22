@@ -6,25 +6,35 @@
             <p>{{successMessage}}</p>
         </div>
         <div>
-            <button (click)="openBox()">Change Password</button>
+            <button (click)="openBox()" class="button1">Change Password</button>
         </div>
     </div>
 
 </div>
 <div *ngIf="open" class="box">
-    <div>
+    <div class="row">
         <label for="prev">Enter Old Password:</label>
         <input type="password" [(ngModel)]="oldPassword">
     </div>
-    <div>
+    <div class="row">
         <label for="new">Enter New Password:</label>
         <input type="password" [(ngModel)]="newPassword">
     </div>
     <div class="message">
         <p>{{message}}</p>
     </div>
+    <div class="pass">
+        <p class="Text">New Password Must Contain:</p>
+        <ul>
+            <li>At least 1 Uppercase</li>
+            <li>At least 1 Lowercase</li>
+            <li>At least 1 Number</li>
+            <li>At least 1 Special Character</li>
+            <li>At least 7 Characters</li>
+        </ul>
+    </div>
     <div>
-        <button (click)="closeBox()">Cancel</button>
-        <button (click)="change()">Change</button>
+        <button (click)="closeBox()" class="button">Cancel</button>
+        <button (click)="change()" class="button">Change</button>
     </div>
 </div>

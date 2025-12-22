@@ -1,14 +1,14 @@
 #register{
     width: 300px;
     margin: auto;
-    height: 60vh;
+    height: 75vh;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
     background-color: #f9f9f9;
-    margin-top: 10vh;
+    margin-top: 8vh;
+    margin-bottom: 5vh;
     display: flex;
     justify-content: center;
     flex-direction: column;
@@ -75,6 +75,13 @@ form{
 .role{
     padding-top: 5px;
 }
-error{
+.error{
     color: red;
+    height: 3vh;
+}
+.pass p{
+    margin-left: -3vw;
+}
+.pass{
+    margin-left: 3vw;
 }

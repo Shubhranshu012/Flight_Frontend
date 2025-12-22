@@ -22,9 +22,21 @@
         <input type="radio" value="ADMIN" name="role" [(ngModel)]="role" /> Admin
       </label>
     </div>
-
+    <div class="pass">
+        <p class="Text">New Password Must Contain:</p>
+        <ul>
+            <li>At least 1 Uppercase</li>
+            <li>At least 1 Lowercase</li>
+            <li>At least 1 Number</li>
+            <li>At least 1 Special Character</li>
+            <li>At least 7 Characters</li>
+        </ul>
+    </div>
     <button type="submit" class="button">Register</button>
-    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+    <div class="error">
+      <p *ngIf="errorMessage" >{{ errorMessage }}</p>
+    </div>
+    
   </form>
   <div class="link">
     <p>Already have an account?</p>

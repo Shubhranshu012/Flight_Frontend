@@ -3,11 +3,12 @@ import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
 import { Router, RouterModule } from '@angular/router';
+import { Password } from '../../services/password';
 
 @Component({
   selector: 'app-profile',
-  standalone:true,
-  imports: [FormsModule, CommonModule,RouterModule],
+  standalone: true,
+  imports: [FormsModule, CommonModule, RouterModule],
   templateUrl: './profile.html',
   styleUrl: './profile.css',
 })
@@ -18,10 +19,10 @@ export class Profile implements OnInit {
   open: boolean = false;
 
   role: string = "";
-  message:string="";
-  successMessage:string="";
+  message: string = "";
+  successMessage: string = "";
 
-  constructor(private authService:Auth,private cdr: ChangeDetectorRef,private router: Router){}
+  constructor(private authService: Auth, private cdr: ChangeDetectorRef, private router: Router, private passwordService: Password) { }
   ngOnInit(): void {
     this.email = localStorage.getItem('email') || '';
     this.role = localStorage.getItem('role') || '';
@@ -35,18 +36,31 @@ export class Profile implements OnInit {
   change() {
     console.log("cancel Booking")
     this.message = '';
-    this.authService.change({ "email": this.email, "oldPassword": this.oldPassword,"newPassword":this.newPassword })
-      .subscribe({
-        next: (response) => {
-          this.closeBox();
-          this.successMessage="Change Success";
-          this.cdr.detectChanges();
-        },
-        error: err => {
-          console.log(err);
-          this.message="Wrong Old Password";
-          this.cdr.detectChanges();
-        }
-      });
+    if (this.oldPassword == null || this.oldPassword == "") {
+      this.message = "Enter Old Password";
+      this.cdr.detectChanges();
+      return;
+    }
+    const newMessage = this.passwordService.validate(this.newPassword);
+    if (newMessage == null) {
+      this.authService.change({ "email": this.email, "oldPassword": this.oldPassword, "newPassword": this.newPassword })
+        .subscribe({
+          next: (response) => {
+            this.closeBox();
+            this.successMessage = "Change Success";
+            this.cdr.detectChanges();
+          },
+          error: err => {
+            console.log(err);
+            this.message = "Wrong Old Password";
+            this.cdr.detectChanges();
+          }
+        });
+    }
+    else {
+      this.message = newMessage;
+      this.cdr.detectChanges();
+    }
   }
+
 }
