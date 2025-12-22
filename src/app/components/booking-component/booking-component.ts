@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Auth } from '../../services/auth';
@@ -21,10 +21,10 @@ interface Passenger {
 })
 
 export class BookingComponent {
-  passengersCount:number=1;
+  passengersCount:number=0;
   passengers: Passenger[] = [];
   flightId:string="";
-  message:string="Hello";
+  message:string="";
   booking: { email: string; passengers: Passenger[] } = {
     email: "",
     passengers: []
@@ -33,9 +33,10 @@ export class BookingComponent {
   get passengersArray() {
     return new Array(this.passengersCount);
   }
-  constructor(private route: ActivatedRoute,private router: Router,private bookingService:Auth) {}
+  constructor(private route: ActivatedRoute,private router: Router,private bookingService:Auth,private cdr: ChangeDetectorRef) {}
   ngOnInit() {
     this.flightId = this.route.snapshot.paramMap.get('id') || '';
+    this.booking.email=localStorage.getItem('email') || '';
     const role = localStorage.getItem("role");
     if (!role || role !== "USER") {
       this.router.navigate(['login']);
@@ -63,11 +64,13 @@ export class BookingComponent {
     this.booking.passengers=this.passengers;
     console.log(this.booking);
     this.bookingService.booking(this.booking, this.flightId).subscribe({
-      next: (res) => {
-        console.log('Success', res);
+      next: (responce) => {
+        this.router.navigate(['/all']);
       },
       error: (err) => {
-        console.error('Error', err);
+        this.message=err.error.bookingRequestDto;
+        this.cdr.detectChanges();
+        console.log(err);
       }
     });
   }

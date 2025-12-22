@@ -1,46 +1,36 @@
 <div>
-    <div *ngIf="showPopup==true" class="full blur">
-
-    </div>
+    <div *ngIf="showPopup" class="full blur"></div>
     <div class="message">
         <p>{{message}}</p>
     </div>
-    <div *ngFor="let booking of bookings" class="bookings" >
-        <div class="container">
-            <div class="col">
-                <p>Pnr:</p>
-                <p>{{booking.booking.pnr}}</p>
-            </div>
-            <div>
-                <div class="from-to">
-                    <p>From</p>
-                    <p>→</p>
-                    <p>To</p>
-                </div>
-                <div class="from-to">
-                    <p>{{booking.booking.from}}</p>
-                    <p>→</p>
-                    <p>{{booking.booking.to}}</p>
+    <div class="bookings-container">
+        <div *ngFor="let booking of bookings" class="bookings">
+            <div class="container">
+                <div class="col">
+                    <p>Pnr:{{booking.booking.pnr}}</p>
                 </div>
             </div>
             <div>
-                <p>Number of passengers:{{booking.passengers.length}}</p>
+                <p>Number of passengers: {{booking.passengers.length}}</p>
             </div>
-
-            <p>Booked On:{{booking.booking.bookingTime}}</p>
-            <p>{{booking.booking.status}}</p>
-        </div>
-        
-        <div class="confirm" *ngIf="booking.booking.showPopup">
-            <p>Do U Want To Cancel The Booking?</p>
-            <div>
-                <button [disabled]="booking.booking.status !== 'BOOKED'" (click)="CancelBooking(booking.booking.pnr)"class="button">Yes</button>
-                <button class="button" (click)="booking.booking.showPopup = false" (click)="noBlur()">No</button>
+            <p>Booked On: {{booking.booking.bookingTime}}</p>
+            <p>Status: {{booking.booking.status}}</p>
+            <div class="confirm" *ngIf="booking.booking.showPopup">
+                <p>Do You Want To Cancel The Booking with Pnr {{booking.booking.pnr}}?</p>
+                <div>
+                    <button [disabled]="booking.booking.status !== 'BOOKED'"
+                        (click)="CancelBooking(booking.booking.pnr)" class="button">
+                        Yes
+                    </button>
+                    <button class="button" (click)="booking.booking.showPopup = false; noBlur()">
+                        No
+                    </button>
+                </div>
             </div>
+            <button *ngIf="booking.booking.status === 'BOOKED'" (click)="booking.booking.showPopup = true; blur()"
+                class="button">
+                Cancel ticket
+            </button>
         </div>
-
-        <button *ngIf="booking.booking.status == 'BOOKED'" (click)="booking.booking.showPopup = true" (click)="blur()">
-            Cancel ticket
-        </button>
     </div>
 </div>

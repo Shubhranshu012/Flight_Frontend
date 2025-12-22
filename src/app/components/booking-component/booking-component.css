@@ -57,3 +57,12 @@ button{
     margin-left: calc(50% - 35px);
     justify-content: center;
 }
+.error{
+    color: red;
+    width: 100%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+.error p{
+    text-align: center;
+}

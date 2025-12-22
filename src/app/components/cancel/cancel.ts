@@ -31,9 +31,6 @@ export class Cancel {
       next: (responce) => {
         this.bookings=responce;
         for(let i=0;i<this.bookings.length;i++){
-          console.log(this.bookings[i].booking.flightInventoryId);
-          this.bookings[i].booking.to="Delhi";
-          this.bookings[i].booking.from="Mumbai";
           this.bookings[i].booking.show_pop_up=false;
         }
         console.log(this.bookings);

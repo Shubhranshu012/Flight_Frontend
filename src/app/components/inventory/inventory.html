@@ -27,12 +27,12 @@
 
     <div>
       <label class="label">Departure Time</label>
-      <input class="input" type="datetime-local" [(ngModel)]="departureTime">
+      <input class="input" type="datetime-local" [(ngModel)]="departureTime" [min]="minDate">
     </div>
 
     <div>
       <label class="label">Arrival Time</label>
-      <input class="input" type="datetime-local" [(ngModel)]="arrivalTime">
+      <input class="input" type="datetime-local" [(ngModel)]="arrivalTime" [min]="minDate">
     </div>
 
     <div>

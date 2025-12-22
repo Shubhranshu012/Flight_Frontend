@@ -2,10 +2,6 @@
     <h3>Complete your booking</h3>
     <div class="top">
         <div>
-            <label>Email:</label>
-            <input [(ngModel)]="booking.email" name="email">
-        </div>
-        <div>
             <label>Number of Passengers:</label>
             <input type="number" [(ngModel)]="passengersCount" (ngModelChange)="updatePassenger($event)" [min]=0 name="passengersCount">
         </div>
@@ -48,9 +44,8 @@
             </div>
         </div>
     </div>
-
+    <div class="error">
+        <p>{{message}}</p>
+    </div>
     <button type="submit">Submit</button>
 </form>
-<div>
-    <p>{{message}}</p>
-</div>

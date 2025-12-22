@@ -23,6 +23,7 @@ export class Inventory implements OnInit{
   availableSeats: number = 0;
   message: string = "";
   successMessage:string="";
+  minDate: string = new Date().toISOString().slice(0, 16);
   constructor(private authService:Auth, private cdr: ChangeDetectorRef,private route:Router){}
   ngOnInit() {
     if (localStorage.getItem('role') !== 'ADMIN') {
@@ -74,6 +75,7 @@ export class Inventory implements OnInit{
       },
       error: (responce) => {
         console.error('Error', responce);
+        this.successMessage="";
         this.message=responce.error.inventoryRequestDto || responce.error.error;
         this.cdr.detectChanges();
       }
