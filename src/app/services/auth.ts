@@ -11,6 +11,7 @@ export class Auth{
   private URL2 = 'http://localhost:8088/BOOKINGSERVICE/api/flight/booking';
   private URL3='http://localhost:8088/BOOKINGSERVICE/api/flight/booking/cancel'
   private URL4='http://localhost:8088/BOOKINGSERVICE/api/flight/booking/history';
+  private URL5='http://localhost:8088/FLIGHTSERVICE/api/flight/airline/inventory';
   constructor(private http: HttpClient) {}
 
   register(payload: {username: string,password: string,role: string}): Observable<any> {
@@ -40,6 +41,11 @@ export class Auth{
   change(payload:any){
     const token = localStorage.getItem('token');
     const headers = new HttpHeaders({Authorization: `Bearer ${token}`});
-    return this.http.post(`${this.URL}/change`,payload,{headers});
+    return this.http.post(`${this.URL}/change`,payload);
+  }
+  Add(payload:any){
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({Authorization: `Bearer ${token}`});
+    return this.http.post(`${this.URL5}`,payload,{headers});
   }
 }

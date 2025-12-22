@@ -19,6 +19,7 @@ export class Profile implements OnInit {
 
   role: string = "";
   message:string="";
+  successMessage:string="";
 
   constructor(private authService:Auth,private cdr: ChangeDetectorRef,private router: Router){}
   ngOnInit(): void {
@@ -34,19 +35,16 @@ export class Profile implements OnInit {
   change() {
     console.log("cancel Booking")
     this.message = '';
-    this.authService.change({ "email": this.email, "oldPassword": this.oldPassword,"newPassord":this.newPassword })
+    this.authService.change({ "email": this.email, "oldPassword": this.oldPassword,"newPassword":this.newPassword })
       .subscribe({
         next: (response) => {
           this.closeBox();
-          console.log("Ok");
+          this.successMessage="Change Success";
+          this.cdr.detectChanges();
         },
         error: err => {
           console.log(err);
-          if (err.status === 403) {
-            this.message = 'Wrong Password';
-          } else {
-            this.message = 'PassWord Change failed. Please try again.';
-          }
+          this.message="Wrong Old Password";
           this.cdr.detectChanges();
         }
       });

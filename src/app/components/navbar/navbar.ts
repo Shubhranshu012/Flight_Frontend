@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-navbar',
@@ -9,8 +9,10 @@ import { RouterModule } from '@angular/router';
   styleUrl: './navbar.css',
 })
 export class Navbar {
+  constructor(private route:Router){}
   logout(){
     localStorage.clear();
+    this.route.navigate(['/'])
   }
   isUser(): boolean {
     if(localStorage.getItem('role') == 'USER'){

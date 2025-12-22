@@ -1,1 +1,59 @@
-<p>inventory works!</p>
+
+<div class="flight-card">
+  <div class="flight-header">
+    <h3>Flight Details</h3>
+  </div>
+  <div class="flight-body">
+
+    <div>
+      <label class="label">Airline Name</label>
+      <input class="input" type="text" [(ngModel)]="airlineName" required minlength="2">
+    </div>
+
+    <div>
+      <label class="label">Flight Number</label>
+      <input class="input" type="text" [(ngModel)]="flightNumber" >
+    </div>
+
+    <div>
+      <label class="label">From</label>
+      <input class="input" type="text" [(ngModel)]="fromPlace">
+    </div>
+
+    <div>
+      <label class="label">To</label>
+      <input class="input" type="text" [(ngModel)]="toPlace">
+    </div>
+
+    <div>
+      <label class="label">Departure Time</label>
+      <input class="input" type="datetime-local" [(ngModel)]="departureTime">
+    </div>
+
+    <div>
+      <label class="label">Arrival Time</label>
+      <input class="input" type="datetime-local" [(ngModel)]="arrivalTime">
+    </div>
+
+    <div>
+      <label class="label">Total Seats</label>
+      <input class="input" type="number" [(ngModel)]="totalSeats">
+    </div>
+
+    <div>
+      <label class="label">Available Seats</label>
+      <input class="input" type="number" [(ngModel)]="availableSeats">
+    </div>
+
+    <div>
+      <label class="label">Price (₹)</label>
+      <input class="input" type="number" [(ngModel)]="price">
+    </div>
+
+  </div>
+  <div>
+    <p class="message">{{message}}</p>
+    <p class="success">{{successMessage}}</p>
+  </div>
+  <button (click)="AddInventory()">Add</button>
+</div>

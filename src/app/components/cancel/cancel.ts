@@ -41,7 +41,9 @@ export class Cancel {
       },
       error: (responce) => {
         console.error('Error', responce);
-        this.message=responce.message;
+        if(responce.status==404){
+          this.message="No Booking Found";
+        }
         this.cdr.detectChanges();
       }
     })
