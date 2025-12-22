@@ -29,6 +29,27 @@ Users can search flights, view availability, and securely log in to book flights
 - Price display
 - Book button for next flow
 
+###  Flight Adding
+- Add flights by:
+  - From & To location
+  - Departure date and Time
+  - Arrival date and Time
+  - Price
+  - Seat count
+  - Airline name
+  - Flight number
+- Admin-only
+
+### Profile Management
+- View & update user profile
+- Change password functionality
+- View booking history
+
+###  Booking Management
+- Book selected flights
+- View booking details
+- Cancel bookings
+
 ###  UI/UX
 - Reusable Navbar across all pages
 - Form validation with red highlights
@@ -65,9 +86,14 @@ flight-frontend/
 │   │   │   ├── login/
 │   │   │   ├── register/
 │   │   │   ├── search/
+│   │   │   ├── inventory/
+│   │   │   ├── booking-component/
+│   │   │   ├── cancel/
+│   │   │   ├── profile/
 │   │   │   └── navbar/
 │   │   ├── services/
 │   │   │   ├── auth.ts
+│   │   │   ├── password.ts
 │   │   │   └── service.ts
 │   │   ├── app.config.ts
 │   │   ├── app.html
@@ -122,4 +148,7 @@ All essential validations are implemented at the frontend level to ensure data i
 ###  Registration Form Validations
 - UserName field is mandatory
 - Password field is mandatory
+- Password must be at least 7 characters
+- Password must contain at least one uppercase letter, one lowercase letter, one digit, and one special character
 - Submit button remains disabled until the form is valid
+
