@@ -1,0 +1,35 @@
+.main{
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+.profile{
+    width: 30vw;
+    height: 30vh;
+    margin: auto;
+    margin-top: 20vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 20px;
+    background-color: bisque;
+    border-radius: 5px;
+}
+.box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 30vh;
+    position: absolute;
+    z-index: 10;
+    left: 51%;
+    top: 47%;
+    transform: translate(-50%, -50%);
+    background-color: antiquewhite;
+    border-radius: 5px;
+    padding: 5px;
+    
+}

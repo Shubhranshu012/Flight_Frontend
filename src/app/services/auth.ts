@@ -37,4 +37,9 @@ export class Auth{
     const headers = new HttpHeaders({Authorization: `Bearer ${token}`});
     return this.http.get(`${this.URL4}/${email}`,{headers});
   }
+  change(payload:any){
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({Authorization: `Bearer ${token}`});
+    return this.http.post(`${this.URL}/change`,payload,{headers});
+  }
 }

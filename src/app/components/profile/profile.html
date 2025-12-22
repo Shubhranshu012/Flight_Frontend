@@ -1,0 +1,24 @@
+<div class="main" [style.blur]="open">
+    <div class="profile">
+        <p>{{email}}</p>
+        <p>Role:{{role}}</p>
+        <div>
+            <button (click)="openBox()">Change Password</button>
+        </div>
+    </div>
+
+</div>
+<div *ngIf="open" class="box">
+    <div>
+        <label for="prev">Enter Old Password:</label>
+        <input type="text" [(ngModel)]="oldPassword">
+    </div>
+    <div>
+        <label for="new">Enter Old Password:</label>
+        <input type="text" [(ngModel)]="newPassword">
+    </div>
+    <div>
+        <button (click)="closeBox()">Cancel</button>
+        <button (click)="change()">Change</button>
+    </div>
+</div>

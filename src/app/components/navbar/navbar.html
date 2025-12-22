@@ -8,6 +8,6 @@
         <button *ngIf="isUser()" routerLink="/all">Bookings</button>
         <button routerLink="/search">search</button>
         <button (click)="logout()" *ngIf="isLoggedIn()">Logout</button>
-        <button *ngIf="isUser()" >Profile</button>
+        <button *ngIf="isUser()" routerLink="/profile" >Profile</button>
     </div>
 </header>
