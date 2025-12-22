@@ -75,6 +75,6 @@ form{
 .role{
     padding-top: 5px;
 }
-input.ng-invalid.ng-touched {
-  border: 2px solid rgb(255, 65, 65);
+error{
+    color: red;
 }

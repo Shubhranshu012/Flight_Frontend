@@ -2,29 +2,29 @@
   <div class="register">
     <h1>Register</h1>
   </div>
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <form (ngSubmit)="onSubmit()">
     <div class="col">
       <label for="email">Email:</label>
-      <input type="text" placeholder="Email" formControlName="email" class="input"/> 
+      <input type="text" placeholder="Email" name="email" [(ngModel)]="email" class="input"/> 
     </div>
 
     <div class="col">
       <label for="password">Password:</label>
-      <input type="password" placeholder="Password" formControlName="password" class="input" />
+      <input type="password" placeholder="Password" name="password" [(ngModel)]="password" class="input" />
     </div>
 
     <div class="role">
       <label>Role:</label>
       <label>
-        <input type="radio" value="USER" formControlName="role" /> User
+        <input type="radio" value="USER" name="role" [(ngModel)]="role" /> User
       </label>
       <label>
-        <input type="radio" value="ADMIN" formControlName="role" /> Admin
+        <input type="radio" value="ADMIN" name="role" [(ngModel)]="role" /> Admin
       </label>
     </div>
 
     <button type="submit" class="button">Register</button>
-    
+    <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
   </form>
   <div class="link">
     <p>Already have an account?</p>

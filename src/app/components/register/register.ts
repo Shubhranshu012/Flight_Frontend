@@ -1,39 +1,45 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ChangeDetectorRef, Component } from '@angular/core';
+import {FormsModule} from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { Auth } from '../../services/auth';
+import { Password } from '../../services/password';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule,RouterModule],
+  standalone:true,
+  imports: [FormsModule, RouterModule,CommonModule],
   templateUrl: './register.html',
   styleUrl: './register.css',
 })
 export class Register {
-  registerForm: FormGroup;
-
-  constructor(
-    private fb: FormBuilder,
-    private authService: Auth,
-    private router: Router
-  ) {
-    this.registerForm = this.fb.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-      role: ['USER', Validators.required]
-    });
-  }
+  email: string = "";
+  password: string = "";
+  role: string = "USER";
+  errorMessage: string = "";
+  constructor(private authService: Auth,private cdr: ChangeDetectorRef, private router: Router, private passwordService: Password) { }
 
   onSubmit() {
-    if (this.registerForm.invalid) {
-      this.registerForm.markAllAsTouched();
+    const message = this.passwordService.validate(this.password);
+    if(this.email == null || this.email.trim().length<1){
+      this.errorMessage="Email is Required";
+      this.cdr.detectChanges();
       return;
     }
-
-    this.authService.register(this.registerForm.value)
-      .subscribe({
-        next: () => this.router.navigate(['/login']),
-        error: err => console.error(err)
-      });
+    if (message == null) {
+      this.authService.register({
+        email: this.email,
+        password: this.password,
+        role: this.role
+      })
+        .subscribe({
+          next: () => this.router.navigate(['/login']),
+          error: err => console.error(err)
+        });
+    } else {
+      console.log(message);
+      this.errorMessage=message;
+      this.cdr.detectChanges();
+    }
   }
 }

@@ -14,7 +14,7 @@ export class Auth{
   private URL5='http://localhost:8088/FLIGHTSERVICE/api/flight/airline/inventory';
   constructor(private http: HttpClient) {}
 
-  register(payload: {username: string,password: string,role: string}): Observable<any> {
+  register(payload: {email: string,password: string,role: string}): Observable<any> {
     return this.http.post(`${this.URL}/register`, payload);
   }
 
