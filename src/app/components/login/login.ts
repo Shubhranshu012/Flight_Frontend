@@ -28,9 +28,9 @@ export class Login {
         localStorage.setItem('email',this.email)
         this.router.navigate(['/']);
       },
-      error: err => {
-        console.log(err);
-        if (err.status === 403) {
+      error: error => {
+        console.log(error);
+        if (error.status === 403) {
           this.errorMessage = 'Wrong UserName or Password';
         } else {
           this.errorMessage = 'Login failed. Please try again.';

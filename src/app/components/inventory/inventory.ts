@@ -73,10 +73,10 @@ export class Inventory implements OnInit{
         this.successMessage="Added Inventory";
         this.cdr.detectChanges();
       },
-      error: (responce) => {
-        console.error('Error', responce);
+      error: (error) => {
+        console.error('Error', error);
         this.successMessage="";
-        this.message=responce.error.inventoryRequestDto || responce.error.error;
+        this.message=error.error.inventoryRequestDto || error.error.error;
         this.cdr.detectChanges();
       }
     });

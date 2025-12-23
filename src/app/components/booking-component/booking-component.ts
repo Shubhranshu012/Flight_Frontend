@@ -67,10 +67,10 @@ export class BookingComponent {
       next: (responce) => {
         this.router.navigate(['/all']);
       },
-      error: (err) => {
-        this.message=err.error.bookingRequestDto;
+      error: (error) => {
+        this.message=error.error.bookingRequestDto;
         this.cdr.detectChanges();
-        console.log(err);
+        console.log(error);
       }
     });
   }

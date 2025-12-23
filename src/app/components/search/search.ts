@@ -32,18 +32,18 @@ export class Search {
     }
     this.searchService.searchFlights(this.searchForm.value)
       .subscribe({
-        next: res => {
-          this.flights = res.onwardFlights;
+        next: responce => {
+          this.flights = responce.onwardFlights;
           this.message = '';
           this.cdr.detectChanges();
         },
-        error: err => {
-          console.log('Error object:', err);
-          if (err.status == 404) {
+        error: error => {
+          console.log('Error object:', error);
+          if (error.status == 404) {
             this.message = "Not Found";
           }
-          if (err.status == 400) {
-            this.message = err.error.error;
+          if (error.status == 400) {
+            this.message = error.error.error;
           }
           this.flights = [];
           this.cdr.detectChanges();

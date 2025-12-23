@@ -36,9 +36,9 @@ export class Cancel {
         console.log(this.bookings);
         this.cdr.detectChanges();
       },
-      error: (responce) => {
-        console.error('Error', responce);
-        if(responce.status==404){
+      error: (error) => {
+        console.error('Error', error);
+        if(error.status==404){
           this.message="No Booking Found";
         }
         this.cdr.detectChanges();
@@ -68,9 +68,9 @@ export class Cancel {
         this.showPopup=false;
         this.cdr.detectChanges();
       },
-      error: (responce) => {
-        console.error('Error', responce);
-        this.message=responce.message;
+      error: (error) => {
+        console.error('Error', error);
+        this.message=error.message;
         this.cdr.detectChanges();
       }
     });

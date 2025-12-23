@@ -1,7 +1,14 @@
 #  Flight Booking Application
 
 A full-stack Flight Booking web application built using **Angular** (Frontend) and **Spring Boot Microservices** (Backend).  
-Users can search flights, view availability, and securely log in to book flights.
+- Functionalities Include
+  - User Authentication (Login/Registration) with JWT
+  - Flight Search (One-way/Round-trip)
+  - Flight Booking & Cancellation
+  - User Profile Management
+  - Admin Flight Inventory Management
+  - Password Change Functionality
+  - Password Strength Validation
 
 ---
 # Overall Flow
@@ -130,6 +137,20 @@ flight-frontend/
 
 # Registration Page
 ![Registration Page](./Output/Register.png)
+
+# Admin Inventory Page
+![Admin Inventory Page](./Output/Inventory.png)
+
+# Profile Page
+![Profile Page](./Output/Profile.png)
+
+# Booking Page
+![Booking Page](./Output/Bookings.png)
+
+# Change Password Page
+![Change Password Page](./Output/Change%20Password.png)
+
+
 
 
 ##  Frontend Validation Rules

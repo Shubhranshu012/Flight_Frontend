@@ -34,7 +34,7 @@ export class Register {
       })
         .subscribe({
           next: () => this.router.navigate(['/login']),
-          error: err => console.error(err)
+          error: error => console.error(error)
         });
     } else {
       console.log(message);

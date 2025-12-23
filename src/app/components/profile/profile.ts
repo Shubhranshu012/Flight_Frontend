@@ -50,8 +50,8 @@ export class Profile implements OnInit {
             this.successMessage = "Change Success";
             this.cdr.detectChanges();
           },
-          error: err => {
-            console.log(err);
+          error: error => {
+            console.log(error);
             this.message = "Wrong Old Password";
             this.cdr.detectChanges();
           }
