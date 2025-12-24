@@ -53,6 +53,9 @@ export class Cancel {
     if(!localStorage.getItem("token") && localStorage.getItem("role") != "User"){
       this.router.navigate(['/login']);
     }
+    if(localStorage.getItem('ValidPassword') === 'false'){
+      this.router.navigate(['/forcePassword']);
+    }
   }
   blur(){
     this.showPopup=true;

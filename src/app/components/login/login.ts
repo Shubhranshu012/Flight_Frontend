@@ -1,12 +1,12 @@
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Auth } from '../../services/auth';
-import { Router, RouterModule } from '@angular/router';
+import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, RouterModule, CommonModule, FormsModule],
+  imports: [ CommonModule, FormsModule],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
@@ -16,7 +16,7 @@ export class Login {
   password: string = "";
   constructor(private authService: Auth, private router: Router, private cdr: ChangeDetectorRef) {
   }
-
+  
   onSubmit() {
     this.errorMessage = '';
 
@@ -25,15 +25,23 @@ export class Login {
         next: (response) => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('role', response.role);
-          localStorage.setItem('email', this.email)
-          const now = new Date();
-          const lastDate = new Date(response.lastDate);
-          if (lastDate.getTime() + 5 * 24 * 60 * 60 * 1000 < now.getTime()) {
-            localStorage.setItem('ValidPassword', 'false');
-            this.router.navigate(['/forcePassword']);
+          localStorage.setItem('email', this.email);
+          if (localStorage.getItem('role') !== 'Admin') {
+            const now = new Date();
+            const lastDate = new Date(response.lastDate);
+            console.log('Last password change date:', lastDate);
+            const TimeLimit =  5 * 24 * 60 * 60 * 1000;
+            if (lastDate.getTime() + TimeLimit < now.getTime()) {
+              localStorage.setItem('ValidPassword', 'false');
+              this.router.navigate(['/forcePassword']);
+            } else {
+              console.log('Password still valid');
+              this.router.navigate(['/']);
+            }
           }
-          localStorage.setItem('ValidPassword', 'true');
-          this.router.navigate(['/']);
+          else{
+            this.router.navigate(['/']);
+          }
         },
         error: error => {
           console.log(error);

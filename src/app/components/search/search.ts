@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { searchService } from '../../services/search';
 import { CommonModule } from '@angular/common';
@@ -10,11 +10,13 @@ import { Router, RouterModule } from '@angular/router';
   templateUrl: './search.html',
   styleUrl: './search.css',
 })
-export class Search {
+export class Search implements OnInit {
   searchForm: FormGroup;
   message: string = '';
   flights: any[] = [];
+  airports:any[]=[];
   minDate: any = new Date().toISOString().split('T')[0];
+  
   constructor(private router: Router,private form: FormBuilder, private searchService: searchService, private cdr: ChangeDetectorRef) {
     this.searchForm = this.form.group({
       fromPlace: ['', Validators.required],
@@ -22,6 +24,18 @@ export class Search {
       journeyDate: ['', Validators.required],
       tripType: ['one_way', Validators.required],
       returnDate: ['']
+    });
+  }
+  ngOnInit(): void {
+    this.searchService.getAirports().subscribe({
+      next: responce => {
+        this.airports = responce;
+        console.log(this.airports);
+        this.cdr.detectChanges(); 
+      },
+      error: error => {
+          console.log('Error object:', error);
+        }
     });
   }
 
