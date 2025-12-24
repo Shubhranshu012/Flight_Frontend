@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectorRef, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
+import { Router } from '@angular/router';
 interface Booking{
   id:string,
   pnr:string,
@@ -46,9 +47,12 @@ export class Cancel {
     })
   }
   bookings:any=[];
-  constructor(private authServices:Auth,private cdr: ChangeDetectorRef){}
+  constructor(private authServices:Auth,private cdr: ChangeDetectorRef,private router:Router){}
   ngOnInit(){
     this.getAllBooking();
+    if(!localStorage.getItem("token") && localStorage.getItem("role") != "User"){
+      this.router.navigate(['/login']);
+    }
   }
   blur(){
     this.showPopup=true;

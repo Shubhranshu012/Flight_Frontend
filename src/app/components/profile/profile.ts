@@ -26,6 +26,9 @@ export class Profile implements OnInit {
   ngOnInit(): void {
     this.email = localStorage.getItem('email') || '';
     this.role = localStorage.getItem('role') || '';
+    if(localStorage.getItem('token')==null){
+      this.router.navigate(['login']);
+    }
   }
   openBox() {
     this.open = true;
