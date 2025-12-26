@@ -1,12 +1,25 @@
-<form (ngSubmit)="bookingButton()" >
+<form (ngSubmit)="bookingButton()">
     <h3>Complete your booking</h3>
     <div class="top">
         <div>
             <label>Number of Passengers:</label>
-            <input type="number" [(ngModel)]="passengersCount" (ngModelChange)="updatePassenger($event)" [min]=0 name="passengersCount">
+            <input type="number" [(ngModel)]="passengersCount" (ngModelChange)="updatePassenger($event)" [min]=0
+                name="passengersCount">
         </div>
     </div>
+    <div class="seat-layout">
+        <p>Select Seats:</p>
+        <div class="row" *ngFor="let row of rows">
+            <div class="seat" *ngFor="let seat of seatsLeft" (click)="selectSeat(row+seat)" [class.selected]="selectedSeat.includes(row + seat)">
+                {{ row }}{{ seat }}
+            </div>
+            <div class="aisle"></div>
+            <div class="seat" *ngFor="let seat of seatsRight" (click)="selectSeat(row+seat)" [class.selected]="selectedSeat.includes(row + seat)">
+                {{ row }}{{ seat }}
+            </div>
 
+        </div>
+    </div>
 
     <div *ngFor="let _ of passengersArray; let i = index" class="passengers">
         <p>Passenger {{i+1}}</p>
@@ -17,13 +30,8 @@
                     <input [(ngModel)]="passengers[i].name" name="name{{i}}" class="input">
                 </div>
                 <div class="col">
-                    <label >Age:</label>
+                    <label>Age:</label>
                     <input [(ngModel)]="passengers[i].age" name="age{{i}}" class="input">
-                </div>
-                
-                <div class="col">
-                    <label>SeatNumber:</label>
-                    <input [(ngModel)]="passengers[i].seatNumber" name="seat{{i}}" class="input">
                 </div>
                 <div class="col">
                     <label>Gender:</label>
@@ -47,5 +55,5 @@
     <div class="error">
         <p>{{message}}</p>
     </div>
-    <button type="submit">Submit</button>
+    <button [disabled]="selectedSeat.length !== passengersCount || passengersCount == 0 " type="submit">Submit</button>
 </form>

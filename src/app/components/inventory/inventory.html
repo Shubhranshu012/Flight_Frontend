@@ -17,12 +17,16 @@
 
     <div>
       <label class="label">From</label>
-      <input class="input" type="text" [(ngModel)]="fromPlace">
+      <select class="input" [(ngModel)]="fromPlace">
+        <option *ngFor="let airport of airports" [value]="airport">{{airport}}</option>
+      </select>
     </div>
 
     <div>
       <label class="label">To</label>
-      <input class="input" type="text" [(ngModel)]="toPlace">
+      <select class="input" [(ngModel)]="toPlace">
+        <option *ngFor="let airport of airports" [value]="airport">{{airport}}</option>
+      </select>
     </div>
 
     <div>

@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { Auth } from '../../services/auth';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule } from '@angular/router';
+import { searchService } from '../../services/search';
 
 @Component({
   selector: 'app-inventory',
@@ -23,12 +24,23 @@ export class Inventory implements OnInit{
   availableSeats: number = 0;
   message: string = "";
   successMessage:string="";
+  airports:any[]=[];
   minDate: string = new Date().toISOString().slice(0, 16);
-  constructor(private authService:Auth, private cdr: ChangeDetectorRef,private route:Router){}
+  constructor(private authService:Auth, private cdr: ChangeDetectorRef,private route:Router,private searchService:searchService){}
   ngOnInit() {
     if (localStorage.getItem('role') !== 'ADMIN') {
       this.route.navigate(['/']);
     }
+    this.searchService.getAirports().subscribe({
+      next: responce => {
+        this.airports = responce;
+        console.log(this.airports);
+        this.cdr.detectChanges(); 
+      },
+      error: error => {
+          console.log('Error object:', error);
+        }
+    });
   }
   AddInventory() {
     if(this.flightNumber.trim().length<2){

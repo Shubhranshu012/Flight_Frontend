@@ -7,14 +7,12 @@
     <div class="col">
       <label for="fromPlace">From:</label>
       <select class="input" formControlName="fromPlace">
-        <option value="">Select a place</option>
         <option *ngFor="let airport of airports" [value]="airport">{{airport}}</option>
       </select>
     </div>
     <div class="col">
       <label for="toPlace">To: </label>
       <select class="input" formControlName="toPlace">
-        <option value="">Select a place</option>
         <option *ngFor="let airport of airports" [value]="airport">{{airport}}</option>
       </select>
     </div>

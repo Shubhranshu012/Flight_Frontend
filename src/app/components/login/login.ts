@@ -35,7 +35,7 @@ export class Login {
               localStorage.setItem('ValidPassword', 'false');
               this.router.navigate(['/forcePassword']);
             } else {
-              console.log('Password still valid');
+              localStorage.setItem('ValidPassword', 'true');
               this.router.navigate(['/']);
             }
           }
